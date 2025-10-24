@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
+    <title>Plano pra Matar Aula</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="customization-overlay">
+        <div id="customization-container">
+            <div class="preview-container">
+                <h2>Seu Personagem</h2>
+                <div class="character-preview">
+                    <img id="preview-hair" src="img/customization/empty.png" alt="Cabelo">
+                    <img id="preview-ear" src="img/customization/empty.png" alt="Orelha">
+                    <img id="preview-head" src="img/customization/head_round.png" alt="Cabeça">
+                    <img id="preview-nose" src="img/customization/nose1_round.png" alt="Nariz e Olhos">
+                    <img id="preview-mouth" src="img/customization/mouth1_round.png" alt="Boca">
+                </div>
+                <button id="start-customized-game-button">INICIAR JOGO</button>
+            </div>
+            <div class="options-container">
+                <h2>Personalizar</h2>
+                <div class="option-category">
+                    <h3>Formato da Cabeça</h3>
+                    <div class="option-buttons">
+                        <button class="option-btn active" data-category="head" data-value="round">A) Redondo</button>
+                        <button class="option-btn" data-category="head" data-value="long">B) Longo</button>
+                    </div>
+                </div>
+                <div class="option-category">
+                    <h3>Cabelo</h3>
+                    <div class="option-buttons">
+                        <button class="option-btn active" data-category="hair" data-value="curly_light">A) Claro</button>
+                        <button class="option-btn" data-category="hair" data-value="curly_dark">B) Escuro</button>
+                        <button class="option-btn" data-category="hair" data-value="none">C) Sem</button>
+                    </div>
+                </div>
+                <div class="option-category">
+                    <h3>Nariz e Olhos</h3>
+                    <div class="option-buttons">
+                        <button class="option-btn active" data-category="nose" data-value="1">A)</button>
+                        <button class="option-btn" data-category="nose" data-value="2">B)</button>
+                        <button class="option-btn" data-category="nose" data-value="3">C)</button>
+                        <button class="option-btn" data-category="nose" data-value="4">D)</button>
+                        <button class="option-btn" data-category="nose" data-value="5">E)</button>
+                        <button class="option-btn" data-category="nose" data-value="6">F)</button>
+                    </div>
+                </div>
+                <div class="option-category">
+                    <h3>Orelhas</h3>
+                    <div class="option-buttons">
+                        <button class="option-btn active" data-category="ear" data-value="1">A)</button>
+                        <button class="option-btn" data-category="ear" data-value="2">B)</button>
+                        <button class="option-btn" data-category="ear" data-value="3">C)</button>
+                        <button class="option-btn" data-category="ear" data-value="none">E) Sem</button>
+                    </div>
+                </div>
+                <div class="option-category">
+                    <h3>Boca</h3>
+                    <div class="option-buttons">
+                        <button class="option-btn active" data-category="mouth" data-value="1">A)</button>
+                        <button class="option-btn" data-category="mouth" data-value="2">B)</button>
+                        <button class="option-btn" data-category="mouth" data-value="3">C)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-wrapper" style="display: none;">
+        <div class="game-container">
+            <div class="header">
+                <h1 id="phase-title">Plano pra Matar Aula</h1>
+            </div>
+            <div class="phase-info">
+                <h2>Fase <span id="phase-level">1</span></h2>
+                <p>Meta de Pontos: <span id="phase-target">10</span></p>
+            </div>
+            <div class="enemy-arena">
+                <div class="enemy-slot" id="slot-0"></div>
+                <div class="enemy-slot" id="slot-1"></div>
+                <div class="enemy-slot" id="slot-2"></div>
+            </div>
+            <div class="ui-frame-container">
+                <div class="player-controls">
+                    <input type="text" id="word-input" placeholder="Digite aqui..." autocomplete="off" autofocus>
+                </div>
+                <div class="game-info">
+                    <div class="info">
+                        <p>Vidas: <span id="lives"></span></p>
+                    </div>
+                    <div class="info">
+                        <p>Tempo: <span id="time">20</span></p>
+                    </div>
+                    <div class="info">
+                        <p>Pontuação: <span id="score">0</span></p>
+                    </div>
+                </div>
+                <div id="active-abilities-container"></div>
+            </div>
+            
+            <div id="shop-overlay" style="display: none;">
+                <div id="shop-container">
+                    <h2>Fase Concluída!</h2>
+                    <p>Escolha uma habilidade para a próxima fase.</p>
+                    <div id="ability-cards-container"></div>
+                    <button id="confirm-ability-button" disabled>Continuar</button>
+                </div>
+            </div>
+
+            <div id="name-input-overlay" style="display: none;">
+                <div id="summary-container">
+                    <div class="summary-left-column">
+                        <h2 id="summary-title">Fim de Jogo!</h2>
+                        <div class="player-card-section">
+                            <div class="player-card-container">
+                                <img id="card-layer-bg" src="img/customization/empty.png" alt="Fundo da Carta">
+                                <div id="card-layer-character">
+                                    <img id="char-layer-hair" src="img/customization/empty.png" alt="">
+                                    <img id="char-layer-ear" src="img/customization/empty.png" alt="">
+                                    <img id="char-layer-head" src="img/customization/empty.png" alt="">
+                                    <img id="char-layer-nose" src="img/customization/empty.png" alt="">
+                                    <img id="char-layer-mouth" src="img/customization/empty.png" alt="">
+                                </div>
+                                <img id="card-layer-frame" src="img/customization/empty.png" alt="Estrutura da Carta">
+                            </div>
+                            <div class="player-input-section">
+                                <div id="grade-display"></div>
+                                <p>Digite seu nome para salvar sua pontuação no Hall da Fama!</p>
+                                <input type="text" id="player-name-input" placeholder="Seu nome aqui..." maxlength="10">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="summary-right-column">
+                        <h2>Resumo</h2>
+                        <ul class="final-stats-list">
+                            <li><span>Pontuação Final:</span> <span id="final-score">0</span></li>
+                            <li><span>Fase Alcançada:</span> <span id="final-phase">1</span></li>
+                            <li><span>Vidas Restantes:</span> <span id="final-lives">3</span></li>
+                            <li><span>Tempo Restante:</span> <span id="final-time">0</span></li>
+                            <li><span>Palavras/Minuto:</span> <span id="final-wpm">0</span></li>
+                            <li><span>Erros Cometidos:</span> <span id="final-errors">0</span></li>
+                        </ul>
+                        <h3>Habilidades Adquiridas:</h3>
+                        <div id="final-abilities-container"></div>
+                        <div class="summary-buttons-container">
+                            <button id="submit-score-button">Continuar</button>
+                            <button id="share-card-button">Compartilhar Carta</button>
+                        </div>      
+                    </div>
+                </div>
+            </div>
+            
+            <button id="start-button">Iniciar Jogo</button>
+        </div>
+        
+        <div class="highscore-container">
+            <h2>🏆 Hall da Fama 🏆</h2>
+            <ol id="highscore-list"></ol>
+        </div>
+    </div>
+
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+
+    <script src="highscore.js" defer></script>
+    <script src="customization.js" defer></script>
+    <script src="script.js" defer></script>
+
+    <div id="qr-code-overlay" style="display: none;">
+    <div id="qr-code-modal">
+        <h2>Compartilhe sua Carta!</h2>
+        <p>Escaneie o código abaixo com seu celular para ver e baixar sua carta.</p>
+        <div id="qr-code-container"></div>
+        <button id="close-qr-button">Fechar</button>
+    </div>
+</div>
+</body>
+</html>

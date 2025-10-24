@@ -1,0 +1,138 @@
+:root {
+    --font-primary: 'Roboto Mono', monospace;
+    --color-dark: #000000;
+    --color-light: #ffffff;
+    --border-main: 5px solid var(--color-dark);
+}
+
+body {
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 2rem;
+    
+    /* Fundo padrão para tutorial */
+    background-image: url('img/backgrounds/bg.png');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Fundo específico para a página de menu */
+body.pagina-menu {
+    background-image: url('img/backgrounds/bg_title.png');
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+    gap: clamp(2rem, 8vw, 8rem);
+}
+
+/* Imagem do Título no Menu */
+#main-title-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    filter: drop-shadow(10px 10px 15px rgba(0, 0, 0, 0.5));
+}
+
+/* Container dos Botões no Menu */
+#menu-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--color-light);
+    padding: 40px;
+    border: var(--border-main);
+    border-radius: 20px;
+}
+
+/* Container do Tutorial */
+#tutorial-container {
+    background-image: url('img/backgrounds/background_customize.png');
+    background-size: 100% 100%;
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    min-height: 640px;
+    padding: clamp(30px, 8vw, 100px);
+    box-sizing: border-box;
+    border-radius: 15px;
+    text-align: center;
+    margin: auto;
+    color: var(--color-dark);
+    font-family: var(--font-primary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#tutorial-container h1 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-top: 0;
+}
+
+#tutorial-container p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Estilo unificado para botões de menu/tutorial */
+.button,
+.menu-button {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    padding: 15px 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    
+    background-color: var(--color-light);
+    border: 3px solid var(--color-dark);
+    color: var(--color-dark);
+    
+    width: 100%;
+    max-width: 12rem;
+    box-sizing: border-box;
+}
+
+.button:hover,
+.menu-button:hover {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    transform: translateY(-2px);
+}
+
+/* Media query para telas pequenas */
+@media (max-width: 768px) {
+    body.pagina-menu {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    #main-title-image {
+        max-width: 300px;
+    }
+
+    #menu-container {
+        padding: 20px;
+    }
+
+    #tutorial-container {
+        padding: 20px;
+        min-height: 0;
+        height: 90vh;
+        overflow-y: auto;
+    }
+
+    .button, .menu-button {
+        max-width: 100%;
+    }
+}
